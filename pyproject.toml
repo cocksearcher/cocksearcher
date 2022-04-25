@@ -6,6 +6,10 @@ authors = ["KIM JUNG BIN <kjbin0420@naver.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+Django = "^4.0.4"
+djangorestframework = "^3.13.1"
+drf-spectacular = "^0.22.0"
+django-filter = "^21.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"
