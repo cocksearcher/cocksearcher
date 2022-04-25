@@ -1,0 +1,67 @@
+openapi: 3.0.3
+info:
+  title: Cocksearcher API Document
+  version: 1.0.0
+  description: Cocksearcher server의 API docs입니다.
+  contact:
+    name: smoothbear
+    url: http://localhost:8080
+    email: smoothbear04@gmail.com
+  license:
+    name: MIT License
+    url: https://github.com/cocksearcher/cocksearcher/blob/main/LICENSE
+paths:
+  /cocktail/today:
+    get:
+      operationId: cocktail_today_retrieve
+      parameters:
+      - in: query
+        name: angry
+        schema:
+          type: number
+      - in: query
+        name: exciting
+        schema:
+          type: number
+      - in: query
+        name: happy
+        schema:
+          type: number
+      - in: query
+        name: hungry
+        schema:
+          type: number
+      - in: query
+        name: sad
+        schema:
+          type: number
+      tags:
+      - 칵테일
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TodayCocktail'
+          description: ''
+components:
+  schemas:
+    TodayCocktail:
+      type: object
+      properties:
+        is_liked:
+          type: boolean
+      required:
+      - is_liked
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+    cookieAuth:
+      type: apiKey
+      in: cookie
+      name: sessionid
