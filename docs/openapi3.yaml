@@ -2,7 +2,7 @@ openapi: 3.0.3
 info:
   title: Cocksearcher API Document
   version: 1.0.0
-  description: Cocksearcher server의 API docs입니다.
+  description: Cocksearcher server API docuementation.
   contact:
     name: smoothbear
     url: http://localhost:8080
@@ -11,9 +11,108 @@ info:
     name: MIT License
     url: https://github.com/cocksearcher/cocksearcher/blob/main/LICENSE
 paths:
+  /cocktail:
+    get:
+      operationId: cocktail-list
+      parameters:
+      - in: query
+        name: abv
+        schema:
+          type: string
+      - in: query
+        name: alphabet
+        schema:
+          type: string
+      - in: query
+        name: name
+        schema:
+          type: string
+      - in: query
+        name: topic
+        schema:
+          type: string
+      tags:
+      - cocktail
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailList'
+          description: ''
+  /cocktail/{id}:
+    get:
+      operationId: item-detail
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: item_id
+        schema:
+          type: number
+        required: true
+      tags:
+      - cocktail
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailDetail'
+          description: ''
+  /cocktail/{id}/prefer:
+    post:
+      operationId: cocktail-prefer
+      parameters:
+      - in: path
+        name: id
+        schema:
+          type: integer
+        required: true
+      - in: path
+        name: item_id
+        schema:
+          type: number
+        required: true
+      tags:
+      - cocktail
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CocktailPrefer'
+          application/x-www-form-urlencoded:
+            schema:
+              $ref: '#/components/schemas/CocktailPrefer'
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/CocktailPrefer'
+        required: true
+      security:
+      - cookieAuth: []
+      - basicAuth: []
+      - {}
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CocktailPrefer'
+          description: ''
   /cocktail/today:
     get:
-      operationId: cocktail_today_retrieve
+      operationId: today_cocktail
       parameters:
       - in: query
         name: angry
@@ -36,7 +135,7 @@ paths:
         schema:
           type: number
       tags:
-      - 칵테일
+      - cocktail
       security:
       - cookieAuth: []
       - basicAuth: []
@@ -50,13 +149,85 @@ paths:
           description: ''
 components:
   schemas:
-    TodayCocktail:
+    CocktailDetail:
       type: object
       properties:
+        name:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        image_url:
+          type: string
+        recipe:
+          type: array
+          items:
+            type: string
+        mood:
+          type: string
+        abv:
+          type: number
+          format: double
+        likes:
+          type: string
         is_liked:
           type: boolean
       required:
+      - abv
+      - image_url
+      - ingredients
       - is_liked
+      - likes
+      - mood
+      - name
+      - recipe
+    CocktailList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/CocktailDetail'
+      required:
+      - data
+    CocktailPrefer:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+      - id
+    TodayCocktail:
+      type: object
+      properties:
+        name:
+          type: string
+        ingredients:
+          type: array
+          items:
+            type: string
+        recipe:
+          type: array
+          items:
+            type: string
+        mood:
+          type: string
+        abv:
+          type: number
+          format: double
+        likes:
+          type: string
+        is_liked:
+          type: boolean
+      required:
+      - abv
+      - ingredients
+      - is_liked
+      - likes
+      - mood
+      - name
+      - recipe
   securitySchemes:
     basicAuth:
       type: http

@@ -131,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.entities.BigAutoField'
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Cocksearcher API Document',
-    'DESCRIPTION': 'Cocksearcher server의 API docs입니다.',
+    'DESCRIPTION': 'Cocksearcher server API docuementation.',
     'CONTACT': {'name': 'smoothbear', 'url': 'http://localhost:8080', 'email': 'smoothbear04@gmail.com'},
     'SWAGGER_UI_SETTINGS': {
         'dom_id': '#swagger-ui',

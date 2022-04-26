@@ -1,6 +1,5 @@
-import dataclasses
 from dataclasses import dataclass
-from typing import Dict, List, Tuple, Type
+from typing import Dict
 
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
@@ -28,7 +27,12 @@ class TodayCocktailQuery(BaseQuery):
 
 
 class TodayCocktailSerializer(serializers.Serializer):
-
+    name = serializers.CharField(allow_null=False)
+    ingredients = serializers.ListField(child=serializers.CharField(allow_null=False))
+    recipe = serializers.ListField(child=serializers.CharField(allow_null=False))
+    mood = serializers.CharField(allow_null=False)
+    abv = serializers.FloatField(allow_null=False)
+    likes = serializers.CharField(allow_null=False)
     is_liked = serializers.BooleanField(allow_null=False)
 
     def validate(self, data: Dict[str, str]) -> TodayCocktailQuery:

@@ -2,9 +2,11 @@ from dataclasses import dataclass
 from enum import Enum
 from typing import Dict, Any
 
+from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from cocksearcher.views.v1.requests.base_query import BaseQuery
+from cocksearcher.views.v1.serializers.cocktail_detail import CocktailDetailSerializer
 
 
 class Sort(Enum):
@@ -38,3 +40,7 @@ class CocktailListQuery(BaseQuery):
             alphabet=alphabet_type,
             abv=abv_type
         )
+
+
+class CocktailListSerializer(serializers.Serializer):
+    data = serializers.ListField(child=CocktailDetailSerializer(), required=True)
