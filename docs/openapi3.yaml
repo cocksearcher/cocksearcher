@@ -157,7 +157,7 @@ components:
         ingredients:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/IngredientDetail'
         image_url:
           type: string
         recipe:
@@ -198,6 +198,16 @@ components:
           type: string
       required:
       - id
+    IngredientDetail:
+      type: object
+      properties:
+        name:
+          type: string
+        image_url:
+          type: string
+      required:
+      - image_url
+      - name
     TodayCocktail:
       type: object
       properties:
@@ -206,7 +216,7 @@ components:
         ingredients:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/IngredientDetail'
         recipe:
           type: array
           items:
