@@ -5,6 +5,7 @@ from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
 from cocksearcher.views.v1.requests.base_query import BaseQuery
+from cocksearcher.views.v1.serializers.ingredient_detail import IngredientDetailSerializer
 
 
 @dataclass(frozen=True)
@@ -28,7 +29,7 @@ class TodayCocktailQuery(BaseQuery):
 
 class TodayCocktailSerializer(serializers.Serializer):
     name = serializers.CharField(allow_null=False)
-    ingredients = serializers.ListField(child=serializers.CharField(allow_null=False))
+    ingredients = serializers.ListField(child=IngredientDetailSerializer())
     recipe = serializers.ListField(child=serializers.CharField(allow_null=False))
     mood = serializers.CharField(allow_null=False)
     abv = serializers.FloatField(allow_null=False)
