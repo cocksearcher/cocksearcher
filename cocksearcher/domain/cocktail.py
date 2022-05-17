@@ -4,7 +4,7 @@ from datetime import datetime
 
 
 @dataclass(frozen=True)
-class CocktailData:
+class Cocktail:
     id: int
     name: str
     tags: list[str]
@@ -18,8 +18,8 @@ class CocktailData:
     image_location: ImageLocation
 
     @staticmethod
-    def from_json(data: any) -> CocktailData:
-        return CocktailData(
+    def from_json(data: any) -> Cocktail:
+        return Cocktail(
             id=data['idDrink'],
             name=data['strDrink'],
             tags=str(data['strTags']).split(sep=','),
