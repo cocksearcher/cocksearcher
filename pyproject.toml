@@ -12,6 +12,7 @@ drf-spectacular = "^0.22.0"
 django-filter = "^21.1"
 serializers = "^0.2.4"
 requests = "^2.27.1"
+elasticsearch = "^8.2.0"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

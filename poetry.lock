@@ -119,6 +119,36 @@ offline = ["drf-spectacular-sidecar"]
 sidecar = ["drf-spectacular-sidecar"]
 
 [[package]]
+name = "elastic-transport"
+version = "8.1.2"
+description = "Transport classes and utilities shared among Python Elastic client libraries"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[package.dependencies]
+certifi = "*"
+urllib3 = ">=1.26.2,<2"
+
+[package.extras]
+develop = ["pytest", "pytest-cov", "pytest-mock", "pytest-asyncio", "pytest-httpserver", "trustme", "mock", "requests", "aiohttp"]
+
+[[package]]
+name = "elasticsearch"
+version = "8.2.0"
+description = "Python client for Elasticsearch"
+category = "main"
+optional = false
+python-versions = ">=3.6, <4"
+
+[package.dependencies]
+elastic-transport = ">=8,<9"
+
+[package.extras]
+async = ["aiohttp (>=3,<4)"]
+requests = ["requests (>=2.4.0,<3.0.0)"]
+
+[[package]]
 name = "future"
 version = "0.18.2"
 description = "Clean single-source support for Python 3 and 2"
@@ -330,7 +360,7 @@ python-versions = "*"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "cb9fa2ffdaa75d29f1ae0d0547565ffdd940c2dc675a7e17b9d6281b25ae8176"
+content-hash = "8dc137b15d01c28181730e2879acb00a529f4f3716a0e5f9aed7561237fb371e"
 
 [metadata.files]
 asgiref = [
@@ -372,6 +402,14 @@ djangorestframework = [
 drf-spectacular = [
     {file = "drf-spectacular-0.22.0.tar.gz", hash = "sha256:1d6bf33f57ec7d973a7a29a4976fab602333e0bcd0ab16fd3b4cd1e7b427613d"},
     {file = "drf_spectacular-0.22.0-py3-none-any.whl", hash = "sha256:229c3dcc5f88275e4742078d4003638970db5382caa16d53c0b3b42b62b1c034"},
+]
+elastic-transport = [
+    {file = "elastic-transport-8.1.2.tar.gz", hash = "sha256:869f7d668fb7738776639053fc87499caacbd1bdc7819f0de8025ac0e6cb29ce"},
+    {file = "elastic_transport-8.1.2-py3-none-any.whl", hash = "sha256:10914d0c5c268d9dcfee02cfbef861382d098309ba4eedab820062841bd214b3"},
+]
+elasticsearch = [
+    {file = "elasticsearch-8.2.0-py3-none-any.whl", hash = "sha256:b7d119911e5bf4286cd3155aa93ad0e6b001f637e05f8ec4bf18ee585c1cacfb"},
+    {file = "elasticsearch-8.2.0.tar.gz", hash = "sha256:1ca41710ed460acfe3d1724a5a2aefbda24564abb10c03e38e71575183d390fb"},
 ]
 future = [
     {file = "future-0.18.2.tar.gz", hash = "sha256:b1bead90b70cf6ec3f0710ae53a525360fa360d306a86583adc6bf83a4db537d"},
