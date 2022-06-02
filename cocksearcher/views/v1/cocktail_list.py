@@ -16,10 +16,3 @@ class CocktailListView(APIView):
     )
     def get(self, request: Request):
         pass
-
-    @extend_schema(
-        operation_id="cocktail-list-refresh",
-        tags=["cocktail", "refresh"],
-    )
-    def post(self, request: Request):
-        pass

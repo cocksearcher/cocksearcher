@@ -43,4 +43,10 @@ class CocktailListQuery(BaseQuery):
 
 
 class CocktailListSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
     data = serializers.ListField(child=CocktailDetailSerializer(), required=True)
