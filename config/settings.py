@@ -9,10 +9,12 @@ https://docs.djangoproject.com/en/4.0/topics/settings/
 For the full cocktail_list of settings and their values, see
 https://docs.djangoproject.com/en/4.0/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
+import environ
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
@@ -128,6 +130,12 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.entities.BigAutoField'
+
+# Initialize environment variables
+env = environ.Env()
+environ.Env.read_env(
+    env_file=os.path.join(BASE_DIR, '.env')
+)
 
 SPECTACULAR_SETTINGS = {
     'TITLE': 'Cocksearcher API Document',

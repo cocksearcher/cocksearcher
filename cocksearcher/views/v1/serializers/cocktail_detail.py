@@ -4,6 +4,12 @@ from cocksearcher.views.v1.serializers.ingredient_detail import IngredientDetail
 
 
 class CocktailDetailSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
     name = serializers.CharField(allow_null=False)
     ingredients = serializers.ListField(child=IngredientDetailSerializer())
     image_url = serializers.CharField(allow_null=False)

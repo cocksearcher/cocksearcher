@@ -1,17 +1,17 @@
 import abc
 from abc import ABCMeta
 
-from cocktail import Cocktail
+from cocksearcher.domain.cocktail import Cocktail
 
 
 class CocktailRepository(metaclass=ABCMeta):
 
     @abc.abstractmethod
-    def create(self, cocktail: Cocktail):
+    def insert(self, cocktail: Cocktail):
         pass
 
     @abc.abstractmethod
-    def create_all(self, cocktails: list[Cocktail]):
+    def insert_all(self, cocktails: list[Cocktail]):
         pass
 
     @abc.abstractmethod

@@ -28,6 +28,12 @@ class TodayCocktailQuery(BaseQuery):
 
 
 class TodayCocktailSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
     name = serializers.CharField(allow_null=False)
     ingredients = serializers.ListField(child=IngredientDetailSerializer())
     recipe = serializers.ListField(child=serializers.CharField(allow_null=False))
