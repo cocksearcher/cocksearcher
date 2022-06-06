@@ -1,11 +1,13 @@
-import requests
+import asyncio
+
+import aiohttp
 
 from cocksearcher.domain.cocktail import Cocktail, Instruction, ImageLocation
 
 BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php"
 
 
-def get_cocktail_from_json(data: any):
+async def get_cocktail_from_json(data: any):
     return Cocktail(
         id=data['idDrink'],
         name=data['strDrink'],
@@ -30,21 +32,28 @@ def get_cocktail_from_json(data: any):
     )
 
 
-def get_cocktail_list_by_alphabet(alphabet: str) -> list[Cocktail]:
-    response = requests.get(BASE_URL, params=dict(f=alphabet))
-    data = response.json()
-    drinks = data["drinks"]
+async def get_cocktail_list_by_alphabet(alphabet: str) -> list[Cocktail]:
+    async with aiohttp.ClientSession() as session:
+        response = await session.get(BASE_URL, params=dict(f=alphabet))
+        data = await response.json()
 
-    if drinks is None:
-        return []
+        drinks = data["drinks"]
 
-    return [get_cocktail_from_json(drink) for drink in drinks]
+        if drinks is None:
+            return []
+
+        return [await get_cocktail_from_json(drink) for drink in drinks]
+
+
+async def _get_cocktail_list() -> list[Cocktail]:
+    results = []
+    jobs = [get_cocktail_list_by_alphabet(chr(i)) for i in range(97, 122)]
+
+    for datas in await asyncio.gather(*jobs):
+        results.extend(datas)
+
+    return results
 
 
 def get_cocktail_list() -> list[Cocktail]:
-    cocktail_list = []
-
-    for letter in (chr(i) for i in range(97, 122)):
-        cocktail_list.extend(get_cocktail_list_by_alphabet(letter))
-
-    return cocktail_list
+    return asyncio.run(_get_cocktail_list())
