@@ -8,14 +8,14 @@ authors = ["KIM JUNG BIN <kjbin0420@naver.com>"]
 python = "^3.10"
 Django = "^4.0.4"
 djangorestframework = "^3.13.1"
-drf-spectacular = "^0.22.0"
+drf-spectacular = "^0.22.1"
 django-filter = "^21.1"
 serializers = "^0.2.4"
-requests = "^2.27.1"
-elasticsearch = "^8.2.0"
+elasticsearch = "^8.2.2"
+aiohttp = "^3.8.1"
 
 [tool.poetry.dev-dependencies]
-pytest = "^5.2"
+pytest = "^7.1.2"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
