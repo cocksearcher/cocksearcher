@@ -1,4 +1,4 @@
-"""config URL Configuration
+"""cocksearcher URL Configuration
 
 The `urlpatterns` cocktail_list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('v1', include('cocksearcher.views.v1.urls')),
+    path('cocktails', include('list.urls')),
+    path('cocktails/<int:item_id>/', include('cocktail.urls')),
+    path('cocktails/today/', include('today.urls')),
     path('admin/', admin.site.urls),
 ]

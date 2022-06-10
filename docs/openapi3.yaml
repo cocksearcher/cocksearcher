@@ -13,7 +13,7 @@ info:
 paths:
   /cocktail:
     get:
-      operationId: cocktail-list
+      operationId: cocksearcher-list
       parameters:
       - in: query
         name: abv
@@ -32,7 +32,7 @@ paths:
         schema:
           type: string
       tags:
-      - cocktail
+      - cocksearcher
       security:
       - cookieAuth: []
       - basicAuth: []
@@ -46,7 +46,7 @@ paths:
           description: ''
   /cocktail/{id}:
     get:
-      operationId: item-detail
+      operationId: item-cocktail
       parameters:
       - in: path
         name: id
@@ -59,7 +59,7 @@ paths:
           type: number
         required: true
       tags:
-      - cocktail
+      - cocksearcher
       security:
       - cookieAuth: []
       - basicAuth: []
@@ -73,7 +73,7 @@ paths:
           description: ''
   /cocktail/{id}/prefer:
     post:
-      operationId: cocktail-prefer
+      operationId: cocksearcher-prefer
       parameters:
       - in: path
         name: id
@@ -86,7 +86,7 @@ paths:
           type: number
         required: true
       tags:
-      - cocktail
+      - cocksearcher
       requestBody:
         content:
           application/json:
@@ -135,7 +135,7 @@ paths:
         schema:
           type: number
       tags:
-      - cocktail
+      - cocksearcher
       security:
       - cookieAuth: []
       - basicAuth: []

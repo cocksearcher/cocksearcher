@@ -4,8 +4,7 @@ from typing import Dict
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from cocksearcher.views.v1.requests.base_query import BaseQuery
-from cocksearcher.views.v1.serializers.ingredient_detail import IngredientDetailSerializer
+from cocksearcher.base_query import BaseQuery
 
 
 @dataclass(frozen=True)
@@ -25,6 +24,17 @@ class TodayCocktailQuery(BaseQuery):
             exciting=data['exciting'],
             hungry=data['hungry']
         )
+
+
+class IngredientDetailSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    name = serializers.CharField(allow_null=False)
+    image_url = serializers.CharField(allow_null=False)
 
 
 class TodayCocktailSerializer(serializers.Serializer):
@@ -48,7 +58,7 @@ class TodayCocktailSerializer(serializers.Serializer):
         if fields not in data.keys():
             raise ValidationError('field is must be empty')
 
-        for key in fields:
+        for key, _ in fields:
             if not data[key].isnumeric():
                 raise ValidationError('field is must be number')
 

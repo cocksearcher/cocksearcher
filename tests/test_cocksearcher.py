@@ -1,4 +1,4 @@
-from config import __version__
+from cocksearcher import __version__
 
 
 def test_version():

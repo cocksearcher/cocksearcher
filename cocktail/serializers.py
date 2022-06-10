@@ -1,6 +1,15 @@
 from rest_framework import serializers
 
-from cocksearcher.views.v1.serializers.ingredient_detail import IngredientDetailSerializer
+
+class IngredientDetailSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    name = serializers.CharField(allow_null=False)
+    image_url = serializers.CharField(allow_null=False)
 
 
 class CocktailDetailSerializer(serializers.Serializer):
@@ -18,3 +27,13 @@ class CocktailDetailSerializer(serializers.Serializer):
     abv = serializers.FloatField(allow_null=False)
     likes = serializers.CharField(allow_null=False)
     is_liked = serializers.BooleanField(allow_null=False)
+
+
+class CocktailPreferSerializer(serializers.Serializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
+    id = serializers.CharField()
