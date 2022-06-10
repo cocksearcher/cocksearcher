@@ -1,22 +1,28 @@
-from elasticsearch import helpers
+from elasticsearch import helpers, Elasticsearch
 
 from cocksearcher.domain.cocktail import Cocktail
-from cocksearcher.domain.repositories.cocktail import CocktailRepository
 
 from dataclasses import asdict
 
-from cocksearcher.infrastructures.elasticsearch.elasticsearch import es
+from cocksearcher.settings import env
 
 
-class CocktailESRepository(CocktailRepository):
+class CocktailESRepository:
+
+    def __init__(self):
+        self.es = Elasticsearch(
+            hosts=[f"http://{env('ELASTIC_HOST')}:9200"],
+            basic_auth=(env("ELASTIC_USER"), env("ELASTIC_PASSWORD")),
+        )
+
     def insert(self, cocktail: Cocktail):
         doc = asdict(cocktail)
 
-        es.index(index="cocktails", doc_type="_doc", body=doc)
+        self.es.index(index="cocktails", doc_type="_doc", body=doc)
 
     def insert_all(self, cocktails: list[Cocktail]):
         docs = ({"_index": "cocktails", "_source": asdict(doc)} for doc in cocktails)
-        helpers.bulk(es, docs)
+        helpers.bulk(self.es, docs)
 
     def get(self, cocktail_id: int):
         pass

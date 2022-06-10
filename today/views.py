@@ -2,8 +2,8 @@ from drf_spectacular.utils import extend_schema
 from rest_framework.request import Request
 from rest_framework.views import APIView
 
-from cocksearcher.views.v1.schemas.params import today_cocktail_params
-from cocksearcher.views.v1.serializers.today_cocktail import TodayCocktailSerializer
+from today.params import today_cocktail_params
+from today.serializers import TodayCocktailSerializer
 
 
 class TodayCocktailView(APIView):
@@ -12,7 +12,7 @@ class TodayCocktailView(APIView):
 
     @extend_schema(
         operation_id="today_cocktail",
-        tags=["cocktail"],
+        tags=["cocksearcher"],
         parameters=today_cocktail_params
     )
     def get(self, request: Request):

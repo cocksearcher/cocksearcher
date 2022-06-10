@@ -1,17 +1,12 @@
 from dataclasses import dataclass
-from enum import Enum
 from typing import Dict, Any
 
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
 
-from cocksearcher.views.v1.requests.base_query import BaseQuery
-from cocksearcher.views.v1.serializers.cocktail_detail import CocktailDetailSerializer
-
-
-class Sort(Enum):
-    Asc = True
-    Desc = False
+from cocksearcher.base_query import BaseQuery
+from cocksearcher.serializers import Sort
+from cocktail.serializers import CocktailDetailSerializer
 
 
 @dataclass(frozen=True)
