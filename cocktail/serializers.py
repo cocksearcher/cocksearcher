@@ -12,7 +12,7 @@ class IngredientDetailSerializer(serializers.Serializer):
     image_url = serializers.CharField(allow_null=False)
 
 
-class CocktailDetailSerializer(serializers.Serializer):
+class CocktailDetailSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         pass
 

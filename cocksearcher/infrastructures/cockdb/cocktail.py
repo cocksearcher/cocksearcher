@@ -6,6 +6,7 @@ from datetime import datetime
 @dataclass(frozen=True)
 class Cocktail:
     id: int
+    cocktail_id: int
     name: str
     tags: list[str]
     category: str
@@ -16,6 +17,7 @@ class Cocktail:
     measures: list[str]
     modified_at: datetime
     image_location: ImageLocation
+    mood: str
 
 
 @dataclass(frozen=True)

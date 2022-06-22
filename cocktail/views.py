@@ -12,7 +12,7 @@ class CocktailDetailView(APIView):
 
     @extend_schema(
         operation_id="item-cocktail",
-        tags=["cocksearcher"],
+        tags=["cocktail"],
         parameters=[OpenApiParameter(
             name="id",
             type=OpenApiTypes.NUMBER,
@@ -31,8 +31,8 @@ class CocktailPreferView(APIView):
     serializer_class = CocktailPreferSerializer
 
     @extend_schema(
-        operation_id="cocksearcher-prefer",
-        tags=["cocksearcher"],
+        operation_id="cocktail-prefer",
+        tags=["cocktail"],
         parameters=[OpenApiParameter(
             name="item_id",
             type=OpenApiTypes.NUMBER,
@@ -41,6 +41,6 @@ class CocktailPreferView(APIView):
     )
     def post(self, request, item_id: int):
         if item_id is None:
-            raise NotFound("cocksearcher is not found")
+            raise NotFound("cocktail is not found")
 
         return Response()
