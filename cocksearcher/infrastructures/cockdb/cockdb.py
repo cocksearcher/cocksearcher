@@ -2,7 +2,7 @@ import asyncio
 
 import aiohttp
 
-from cocksearcher.domain.cocktail import Cocktail, Instruction, ImageLocation
+from cocksearcher.infrastructures.cockdb.cocktail import Cocktail, Instruction, ImageLocation
 
 BASE_URL = "https://www.thecocktaildb.com/api/json/v1/1/search.php"
 

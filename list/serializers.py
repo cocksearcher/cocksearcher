@@ -23,15 +23,15 @@ class CocktailListQuery(BaseQuery):
                 "asc": Sort.Asc,
                 "desc": Sort.Desc
             }
-            alphabet_type: Sort = sort_type[data['alphabet']]
-            abv_type: Sort = sort_type[data['abv']]
+            alphabet_type: Sort = sort_type[data.get("alphabet", "asc")]
+            abv_type: Sort = sort_type[data.get("abv", "asc")]
 
         except KeyError:
             raise ValidationError("alphabet or abv value must be in asc, desc")
 
         return CocktailListQuery(
-            name=data['name'],
-            topic=data['topic'],
+            name=data.get("name", ""),
+            topic=data.get("topic", ""),
             alphabet=alphabet_type,
             abv=abv_type
         )
